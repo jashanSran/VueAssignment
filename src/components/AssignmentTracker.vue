@@ -1,17 +1,25 @@
 <template>
   <div class="assignment-tracker">
     <h1>Assignment Tracker</h1>
-    <div
-      v-for="assignment in filteredAssignments"
-      :key="assignment.title"
-      class="assignment"
-      :class="{ completed: assignment.percentComplete === 100 }"
-    >
-      <h3>{{ assignment.title }}</h3>
-      <p>Due Date: {{ assignment.dueDate }}</p>
-      <!-- Calculate days remaining -->
-      <p>Days Remaining: {{ calculateDaysRemaining(assignment.dueDate) }}</p>
-      <p>Percent Complete: {{ assignment.percentComplete }}%</p>
+    <div class="assignments-list">
+      <div
+        v-for="assignment in filteredAssignments"
+        :key="assignment.title"
+        class="assignment"
+        :class="{
+          completed: assignment.percentComplete === 100,
+          'red-bg': assignment.percentComplete < 50,
+          'yellow-bg':
+            assignment.percentComplete >= 50 && assignment.percentComplete < 80,
+          'green-bg': assignment.percentComplete >= 80,
+        }"
+      >
+        <h3>{{ assignment.title }}</h3>
+        <p>Due Date: {{ assignment.dueDate }}</p>
+        <!-- Calculate days remaining -->
+        <p>Days Remaining: {{ calculateDaysRemaining(assignment.dueDate) }}</p>
+        <p>Percent Complete: {{ assignment.percentComplete }}%</p>
+      </div>
     </div>
     <!-- Toggle button to show/hide completed assignments -->
     <div class="toggle">
@@ -67,7 +75,7 @@ export default {
 
 <style>
 .assignment-tracker {
-  max-width: 300px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -76,31 +84,50 @@ h1 {
   text-align: center;
   color: #74e291;
 }
-h3 {
-  color: #59b4c3;
+
+.assignments-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
+
 .assignment {
+  flex: 0 1 calc(50% - 20px);
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
-  margin-bottom: 20px;
 }
 
 .assignment h3 {
   margin-top: 0;
+  color: #59b4c3;
 }
 
 .toggle {
   margin-top: 20px;
+  text-align: center;
 }
 
 .toggle label {
   cursor: pointer;
+  color: #59b4c3;
 }
 
 .toggle input {
   margin-right: 5px;
+}
+
+.red-bg {
+  background-color: #ffcccc;
+}
+
+.yellow-bg {
+  background-color: #ffffcc;
+}
+
+.green-bg {
+  background-color: #ccffcc;
 }
 
 .completed {
