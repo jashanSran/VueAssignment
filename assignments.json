@@ -1,0 +1,24 @@
+{
+  "assignments": [
+    {
+      "title": "React Movie App",
+      "dueDate": "2024-02-24",
+      "percentComplete": 25
+    },
+    {
+      "title": "Code Challenge Project",
+      "dueDate": "2024-02-29",
+      "percentComplete": 20
+    },
+    {
+      "title": "Deck Master ASP.NET Core Project",
+      "dueDate": "2024-02-11",
+      "percentComplete": 50
+    },
+    {
+      "title": "React App Deployment Assigmnent",
+      "dueDate": "2024-02-11",
+      "percentComplete": 100
+    }
+  ]
+}
